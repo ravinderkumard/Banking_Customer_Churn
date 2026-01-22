@@ -13,3 +13,5 @@ graphviz
 xgboost
 
 streamlit
+
+altair
