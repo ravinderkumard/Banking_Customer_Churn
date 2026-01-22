@@ -1,0 +1,21 @@
+
+dataset:
+  name: "Bank Customer Churn"
+  file_path: "data/Churn_Modelling.csv"
+  target_column: "Exited"
+  
+  drop_columns:
+    - "Surname"
+    - "Geography"
+  
+  preprocessing:
+    test_size: 0.2
+    random_state: 42
+    scale_numerical: true
+    # encoding_method: "onehot"
+    # handle_imbalance: true
+    scaling:
+      enabled: true
+      class: "sklearn.preprocessing.StandardScaler"
+      save: true
+      artifact_name: "StandardScaler.pkl"
