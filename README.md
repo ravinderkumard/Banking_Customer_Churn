@@ -3,8 +3,8 @@
 ## Step 1 : Dataset choice
 a. Bank Customer Churn Dataset
 - The dataset contains information about bank customers and whether they have Exited (i.e., closed their accounts) or not.
-     Feature Size: 12
-     Records: 10000
+    - Feature Size: 12
+    - Records: 10000
 
 ## Step 2 : Evaluation Metric
 
@@ -64,7 +64,15 @@ a. Bank Customer Churn Dataset
 
 
     ## Step 3 : GitHub Repository Link
-![alt text](image.png)
+    ![alt text](image.png)
+    - train_model.py : Main script to train and evaluate multiple ML classification models on the Bank Customer Churn dataset.
+    - src/data_loader.py : Module for loading and preprocessing the dataset.
+    - src/model_evaluation.py : Module for evaluating model performance and saving results.
+    - src/evaluation_engine.py : Engine to manage the evaluation process, including saving metrics and models.
+    - streamlit_app.py : Streamlit application for interactive model evaluation and visualization.
+    - config/: Directory containing configuration files for data paths and model parameters.
+    - outputs/: Directory to store evaluation metrics and plots.
+    - model/: Directory to save trained models.
 
 ## Step 4 : Requirements.txt file
     
