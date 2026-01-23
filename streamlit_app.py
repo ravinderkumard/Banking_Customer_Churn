@@ -13,7 +13,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("Machine Learning Classification")
+st.title("Banking Customer Churn - ML Classification")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_DIR = os.path.join(BASE_DIR, "outputs", "models")
