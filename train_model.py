@@ -2,6 +2,7 @@
 import sys
 import os
 import logging
+import pandas as pd
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -80,6 +81,22 @@ for model_name, model_config in models_config.items():
             logger.info(f"   {model_name} completed successfully")
         else:
             logger.error(f"   {model_name} evaluation failed")
+
+        if len(all_metrics)==6:
+            comparison_df = pd.DataFrame(all_metrics)
+
+            comparison_df = comparison_df.round(4)
+            comparison_df = pd.DataFrame(all_metrics)
+
+            comparison_df = comparison_df[
+                ["Model", "Accuracy", "AUC", "Precision", "Recall", "F1", "MCC"]
+            ]
+
+            comparison_df = comparison_df.round(4)
+            comparison_df.to_csv(
+                os.path.join("outputs", "metrics", "trained_model_comparison.csv"),
+                index=False
+            )
             
     except Exception as e:
         logger.error(f"   Error with {model_name}: {e}")

@@ -168,7 +168,19 @@ with tab_single:
 with tab_compare:
     st.header(" Model Comparison")
     if uploaded_file is None:
-        st.info(" Please upload a dataset first in the Dataset tab before Checking Comparison.")
+        st.info(" Please upload a dataset first in the Dataset tab before Checking Comparison.")\
+        
+        SAMPLE_CSV_PATH = "outputs/metrics/trained_model_comparison.csv"
+        if os.path.exists(SAMPLE_CSV_PATH):
+            with open(SAMPLE_CSV_PATH, "rb") as f:
+                st.download_button(
+                    label="Download Trained Models Comparison Report (CSV)",
+                    data=f,
+                    file_name="Trained Model Comparison.csv",
+                    mime="text/csv"
+                )
+        else:
+            st.error("Sample CSV file not found.")
     else:
         
 
@@ -219,10 +231,13 @@ with tab_compare:
                 best_row = results_df.loc[results_df[metric].idxmax()]
                 st.success(f"{metric}: **{best_row['Model']}** ({best_row[metric]:.4f})")
 
+            results_df = results_df.round(4)
             st.download_button(
                 " Download Comparison Results",
                 data=results_df.to_csv(index=False),
                 file_name="model_comparison.csv",
                 mime="text/csv"
             )
+
+            
 
