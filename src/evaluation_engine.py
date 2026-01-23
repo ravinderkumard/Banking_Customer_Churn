@@ -21,7 +21,7 @@ class EvaluationEngine:
         # Create output directory
         output_dir = self.output_config.get('output_dir', 'outputs')
         os.makedirs(output_dir, exist_ok=True)
-        os.makedirs(os.path.join(output_dir, 'models'), exist_ok=True)
+        os.makedirs(os.path.join( 'model'), exist_ok=True)
         os.makedirs(os.path.join(output_dir, 'metrics'), exist_ok=True)
         os.makedirs(os.path.join(output_dir, 'plots'), exist_ok=True)
         
@@ -197,6 +197,6 @@ class EvaluationEngine:
     
     def _save_model(self, model, model_name):
         """Save trained model"""
-        model_path = os.path.join(self.output_dir, 'models', f'{model_name.lower().replace(" ", "_")}.pkl')
+        model_path = os.path.join( 'model', f'{model_name.lower().replace(" ", "_")}.pkl')
         joblib.dump(model, model_path)
         print(f" Model saved: {model_path}")

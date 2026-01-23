@@ -64,7 +64,33 @@ with tab_dataset:
         if uploaded_file.size > MAX_FILE_SIZE:
             st.error(f"File too large. Please upload a file under {MAX_FILE_SIZE} KB.")
             st.stop()
-        df = pd.read_csv(uploaded_file)
+        df_initial = pd.read_csv(uploaded_file)
+        drop_cols = config_manager.get_dataset_config()["drop_columns"]
+        df = df_initial.drop(columns=[c for c in drop_cols if c in df_initial.columns], errors='ignore')
+
+        if 'Gender' in df.columns:
+            df['Gender'] = df['Gender'].map({
+                "Male": 1,
+                "Female": 0,
+                "M": 1,
+                "F": 0,
+                "O":3,
+                "Other":3,
+                "U":3,
+                "Unknown":3
+            })
+        
+        if 'gender' in df.columns:
+            df['gender'] = df['gender'].map({
+                "Male": 1,
+                "Female": 0,
+                "M": 1,
+                "F": 0,
+                "O":3,
+                "Other":3,
+                "U":3,
+                "Unknown":3
+            })
 
         st.success("Dataset loaded successfully!")
         st.write("Shape:", df.shape)

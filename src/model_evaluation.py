@@ -109,7 +109,7 @@ def plot_roc_curve(y_test,y_pred_proba,model_name):
 def save_model_file(model, model_name, use_scaled):
     
     import os
-    os.makedirs('models', exist_ok=True)
+    os.makedirs('model', exist_ok=True)
     
     # Create filename
     filename = model_name.lower().replace(' ', '_')
@@ -117,7 +117,7 @@ def save_model_file(model, model_name, use_scaled):
         filename += '_scaled'
     filename += '.pkl'
     
-    filepath = f'models/{filename}'
+    filepath = f'model/{filename}'
     joblib.dump(model, filepath)
     print(f"\n✓ Model saved to: {filepath}")
 

@@ -47,20 +47,29 @@ class DataLoader:
         print(f" Dataset loaded: {df.shape}")
         print(f" DF Clean Before: {df.columns}")
         
-        df['Gender'] = df['Gender'].map({
-            "Male": 1,
-            "Female": 0,
-            "M": 1,
-            "F": 0,
-            "O":3,
-            "Other":3,
-            "U":3,
-            "Unknown":3
-        })
-    
-        print("="*60)
-        print(df["Gender"].value_counts())
-        print("="*60)
+        if 'Gender' in df.columns:
+            df['Gender'] = df['Gender'].map({
+                "Male": 1,
+                "Female": 0,
+                "M": 1,
+                "F": 0,
+                "O":3,
+                "Other":3,
+                "U":3,
+                "Unknown":3
+            })
+        
+        if 'gender' in df.columns:
+            df['gender'] = df['gender'].map({
+                "Male": 1,
+                "Female": 0,
+                "M": 1,
+                "F": 0,
+                "O":3,
+                "Other":3,
+                "U":3,
+                "Unknown":3
+            })
         
         # Drop columns
         drop_cols = self.config.get('drop_columns', [])
@@ -107,7 +116,7 @@ class DataLoader:
             
             print(f" Scaled {len(numerical_cols)} numerical features")
             print(f" Save scaler : {preprocessing.get('scaling').get("enabled")}")
-            os.makedirs("outputs/models", exist_ok=True)
+            os.makedirs("model", exist_ok=True)
             self._save_artifact(self.scaler,"outputs", preprocessing.get('scaling').get("artifact_name"))
             return X_train, X_test, X_train_scaled, X_test_scaled, y_train, y_test
         
@@ -115,7 +124,7 @@ class DataLoader:
     
     def _save_artifact(self, model, output_dir: str, filename: str):
         """ Method to save on StandarScaler Model"""
-        model_path = os.path.join(output_dir, 'models', f'{filename}')
+        model_path = os.path.join( 'model', f'{filename}')
         joblib.dump(model, model_path)
 
         print(f"Saved artifact: {model_path}")
