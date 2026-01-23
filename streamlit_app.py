@@ -167,20 +167,21 @@ with tab_single:
 
 with tab_compare:
     st.header(" Model Comparison")
+    SAMPLE_CSV_PATH = "outputs/metrics/trained_model_comparison.csv"
+    if os.path.exists(SAMPLE_CSV_PATH):
+        with open(SAMPLE_CSV_PATH, "rb") as f:
+            st.download_button(
+                label="Download Trained Models Comparison Report (CSV)",
+                data=f,
+                file_name="Trained Model Comparison.csv",
+                mime="text/csv"
+            )
+    else:
+        st.error("Sample CSV file not found.")
     if uploaded_file is None:
         st.info(" Please upload a dataset first in the Dataset tab before Checking Comparison.")\
         
-        SAMPLE_CSV_PATH = "outputs/metrics/trained_model_comparison.csv"
-        if os.path.exists(SAMPLE_CSV_PATH):
-            with open(SAMPLE_CSV_PATH, "rb") as f:
-                st.download_button(
-                    label="Download Trained Models Comparison Report (CSV)",
-                    data=f,
-                    file_name="Trained Model Comparison.csv",
-                    mime="text/csv"
-                )
-        else:
-            st.error("Sample CSV file not found.")
+        
     else:
         
 
