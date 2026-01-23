@@ -16,7 +16,7 @@ st.set_page_config(
 st.title("Banking Customer Churn - ML Classification")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_DIR = os.path.join(BASE_DIR, "outputs", "models")
+MODEL_DIR = os.path.join(BASE_DIR, "model")
 CONFIG_DIR = os.path.join(BASE_DIR,"config")
 config_manager = ConfigManager(CONFIG_DIR)
 # -------------------------------------------------
